@@ -44,7 +44,7 @@ Eid Salami Digital Envelope is a platform that allows users to send virtual mone
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/salman679/eid-salami-digital-envelope.git
+   git clone https://github.com/salman679/Eid-Salami-Digital-Envelope.git
    cd eid-salami-digital-envelope
    ```
 
