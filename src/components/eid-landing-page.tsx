@@ -8,7 +8,6 @@ import EnvelopeGenerator from "@/components/envelope-generator";
 
 export default function EidLandingPage() {
   const [, setShowModal] = useState(false);
-  const [modalClosed, setModalClosed] = useState(false);
   const [showEnvelopeGenerator, setShowEnvelopeGenerator] = useState(false);
 
   useEffect(() => {
@@ -24,7 +23,6 @@ export default function EidLandingPage() {
       return () => clearTimeout(timer);
     } else {
       // If they've seen the modal before, mark it as closed
-      setModalClosed(true);
     }
   }, []);
 
@@ -66,7 +64,7 @@ export default function EidLandingPage() {
                 digital envelopes
               </p>
 
-              {modalClosed && !showEnvelopeGenerator && (
+              {!showEnvelopeGenerator && (
                 <div className="animate-bounce">
                   <Button
                     onClick={handleStartSendingGift}
@@ -169,7 +167,7 @@ export default function EidLandingPage() {
               </div>
             </div>
 
-            {!showEnvelopeGenerator && modalClosed && (
+            {!showEnvelopeGenerator && (
               <div className="text-center mt-12">
                 <Button
                   onClick={handleStartSendingGift}
