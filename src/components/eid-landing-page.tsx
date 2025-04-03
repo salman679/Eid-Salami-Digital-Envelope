@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import EnvelopeGenerator from "@/components/envelope-generator";
+import { toast } from "sonner";
 // import EidWelcomeModal from "./eid-welcome-modal";
 
 export default function EidLandingPage() {
@@ -13,6 +14,8 @@ export default function EidLandingPage() {
   useEffect(() => {
     // Check if the modal has been shown before
     const hasSeenModal = localStorage.getItem("eid-modal-seen");
+
+    toast.success("Stay Here! And Send the Eid salami to your friend!");
 
     if (!hasSeenModal) {
       // Show modal after a short delay to ensure smooth loading
