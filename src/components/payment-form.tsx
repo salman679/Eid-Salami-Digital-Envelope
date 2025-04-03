@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-// import { toast } from "@/components/ui/use-toast";
 import { CreditCard, Wallet } from "lucide-react";
+import { toast } from "sonner";
 
 interface PaymentFormProps {
   onPaymentComplete: () => void;
@@ -40,31 +40,25 @@ export default function PaymentForm({ onPaymentComplete }: PaymentFormProps) {
         !cardDetails.expiryDate ||
         !cardDetails.cvv
       ) {
-        // toast({
-        //   title: "Missing information",
-        //   description: "Please fill in all card details",
-        //   variant: "destructive",
-        // });
+        toast.error("Please fill in all card details", {
+          description: "Missing information",
+        });
         return;
       }
 
       // Validate card number (simple check for demo)
       if (!/^\d{16}$/.test(cardDetails.cardNumber.replace(/\s/g, ""))) {
-        // toast({
-        //   title: "Invalid card number",
-        //   description: "Please enter a valid 16-digit card number",
-        //   variant: "destructive",
-        // });
+        toast.error("Please enter a valid 16-digit card number", {
+          description: "Invalid card number",
+        });
         return;
       }
 
       // Validate CVV
       if (!/^\d{3,4}$/.test(cardDetails.cvv)) {
-        // toast({
-        //   title: "Invalid CVV",
-        //   description: "Please enter a valid CVV code",
-        //   variant: "destructive",
-        // });
+        toast.error("Please enter a valid CVV code", {
+          description: "Invalid CVV",
+        });
         return;
       }
     }
@@ -75,10 +69,9 @@ export default function PaymentForm({ onPaymentComplete }: PaymentFormProps) {
     // Simulate payment processing
     setTimeout(() => {
       setIsProcessing(false);
-      //   toast({
-      //     title: "Payment successful!",
-      //     description: "Your payment has been processed successfully",
-      //   });
+      toast.success("Your payment has been processed successfully", {
+        description: "Payment successful!",
+      });
       onPaymentComplete();
     }, 2000);
   };
@@ -188,7 +181,7 @@ export default function PaymentForm({ onPaymentComplete }: PaymentFormProps) {
 
         <Button
           type="submit"
-          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+          className="w-full bg-primary/95 hover:bg-primary/100 text-white"
           disabled={isProcessing}
         >
           {isProcessing ? "Processing..." : "Complete Payment"}

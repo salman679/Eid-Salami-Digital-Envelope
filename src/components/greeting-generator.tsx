@@ -18,9 +18,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-// import { toast } from "@/components/ui/use-toast";
-// import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
+import { toast, Toaster } from "sonner";
 
 const CARD_DESIGNS = [
   {
@@ -62,11 +61,9 @@ export default function GreetingGenerator() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) {
-      //   toast({
-      //     title: "Please enter a name",
-      //     description: "Name is required to generate a greeting",
-      //     variant: "destructive",
-      //   });
+      toast.error("Name is required to generate a greeting", {
+        description: "Please enter a name",
+      });
       return;
     }
 
@@ -98,17 +95,14 @@ export default function GreetingGenerator() {
       link.href = dataUrl;
       link.click();
 
-      //   toast({
-      //     title: "Download successful!",
-      //     description: "Your greeting card has been downloaded",
-      //   });
+      toast.success("Your greeting card has been downloaded", {
+        description: "Download successful!",
+      });
     } catch (error) {
       console.error("Error generating image:", error);
-      //   toast({
-      //     title: "Download failed",
-      //     description: "There was an error downloading your greeting card",
-      //     variant: "destructive",
-      //   });
+      toast.error("There was an error downloading your greeting card", {
+        description: "Download failed",
+      });
     } finally {
       setDownloading(false);
     }
@@ -161,7 +155,7 @@ export default function GreetingGenerator() {
               placeholder="Enter your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="border-emerald-200 focus:border-emerald-500"
+              className="border-primary/50 focus:border-primary/50 focus:ring-0"
             />
           </div>
 
@@ -196,7 +190,7 @@ export default function GreetingGenerator() {
 
           <Button
             type="submit"
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+            className="w-full bg-primary/60 hover:bg-primary/70 text-white"
           >
             Generate Greeting
           </Button>
@@ -272,7 +266,7 @@ export default function GreetingGenerator() {
               <Button
                 onClick={shareToWhatsApp}
                 variant="outline"
-                className="flex-1 sm:flex-none bg-green-50 hover:bg-green-100 text-green-600 border-green-200"
+                className="flex-1 sm:flex-none bg-primary/5 hover:bg-primary/10 text-primary/60 border-primary/20"
                 disabled={sharing}
               >
                 <Share2 className="mr-2 h-4 w-4" />
@@ -291,8 +285,8 @@ export default function GreetingGenerator() {
             </div>
           </div>
         ) : (
-          <div className="h-full flex items-center justify-center p-12 bg-white/50 rounded-xl border-2 border-dashed border-emerald-200">
-            <div className="text-center text-emerald-600">
+          <div className="h-full flex items-center justify-center p-12 bg-white/50 rounded-xl border-2 border-dashed border-primary/20">
+            <div className="text-center text-primary/60">
               <Mosque className="w-16 h-16 mx-auto mb-4 opacity-50" />
               <p className="text-lg">
                 Enter your name and generate a beautiful Eid greeting card
@@ -301,7 +295,7 @@ export default function GreetingGenerator() {
           </div>
         )}
       </div>
-      {/* <Toaster /> */}
+      <Toaster />
     </div>
   );
 }

@@ -19,10 +19,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-// import { toast } from "@/components/ui/use-toast";
-// import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import PaymentForm from "./payment-form";
+import { toast, Toaster } from "sonner";
 
 const CARD_DESIGNS = [
   {
@@ -86,22 +85,19 @@ export default function EnvelopeGenerator() {
     if (currentStep === 1) {
       // Validate first step
       if (!formData.amount || !formData.recipientName || !formData.senderName) {
-        // toast({
-        //   title: "Missing information",
-        //   description: "Please fill in all required fields",
-        //   variant: "destructive",
-        // });
+        toast.error("Please fill in all required fields", {
+          description: "Missing information",
+        });
+
         return;
       }
 
       // Validate amount is a number and greater than 0
       const amount = Number.parseFloat(formData.amount);
       if (isNaN(amount) || amount <= 0) {
-        // toast({
-        //   title: "Invalid amount",
-        //   description: "Please enter a valid amount greater than 0",
-        //   variant: "destructive",
-        // });
+        toast.error("Please enter a valid amount greater than 0", {
+          description: "Invalid amount",
+        });
         return;
       }
     }
@@ -139,17 +135,12 @@ export default function EnvelopeGenerator() {
       link.href = dataUrl;
       link.click();
 
-      //   toast({
-      //     title: "Download successful!",
-      //     description: "Your digital envelope has been downloaded",
-      //   });
+      toast.success("Your digital envelope has been downloaded");
     } catch (error) {
       console.error("Error generating image:", error);
-      //   toast({
-      //     title: "Download failed",
-      //     description: "There was an error downloading your envelope",
-      //     variant: "destructive",
-      //   });
+      toast.error("There was an error downloading your envelope", {
+        description: "Download failed",
+      });
     } finally {
       setDownloading(false);
     }
@@ -200,7 +191,7 @@ export default function EnvelopeGenerator() {
       case 1:
         return (
           <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-emerald-800">
+            <h2 className="text-2xl font-semibold text-primary">
               Step 1: Gift Details
             </h2>
 
@@ -218,7 +209,7 @@ export default function EnvelopeGenerator() {
                   placeholder="Enter amount"
                   value={formData.amount}
                   onChange={handleInputChange}
-                  className="border-emerald-200 focus:border-emerald-500"
+                  className="border-primary/20 focus:border-primary/50"
                 />
               </div>
 
@@ -232,7 +223,7 @@ export default function EnvelopeGenerator() {
                   placeholder="Who is receiving this gift?"
                   value={formData.recipientName}
                   onChange={handleInputChange}
-                  className="border-emerald-200 focus:border-emerald-500"
+                  className="border-primary/20 focus:border-primary/50"
                 />
               </div>
 
@@ -246,7 +237,7 @@ export default function EnvelopeGenerator() {
                   placeholder="Your name"
                   value={formData.senderName}
                   onChange={handleInputChange}
-                  className="border-emerald-200 focus:border-emerald-500"
+                  className="border-primary/20 focus:border-primary/50"
                 />
               </div>
             </div>
@@ -254,7 +245,7 @@ export default function EnvelopeGenerator() {
             <div className="pt-4 flex justify-end">
               <Button
                 onClick={handleNextStep}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                className="bg-primary/95 hover:bg-primary/100 text-white"
               >
                 Next Step
                 <ChevronRight className="ml-2 h-4 w-4" />
@@ -266,7 +257,7 @@ export default function EnvelopeGenerator() {
       case 2:
         return (
           <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-emerald-800">
+            <h2 className="text-2xl font-semibold text-primary">
               Step 2: Personalize Your Envelope
             </h2>
 
@@ -281,7 +272,7 @@ export default function EnvelopeGenerator() {
                   placeholder="Write a personal message for the recipient..."
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="min-h-[120px] border-emerald-200 focus:border-emerald-500"
+                  className="min-h-[120px] border-primary/20 focus:border-primary/50"
                 />
               </div>
 
@@ -324,7 +315,7 @@ export default function EnvelopeGenerator() {
               </Button>
               <Button
                 onClick={handleNextStep}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                className="bg-primary/95 hover:bg-primary/100 text-white"
               >
                 Next Step
                 <ChevronRight className="ml-2 h-4 w-4" />
@@ -336,7 +327,7 @@ export default function EnvelopeGenerator() {
       case 3:
         return (
           <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-emerald-800">
+            <h2 className="text-2xl font-semibold text-primary/100">
               Step 3: Payment
             </h2>
 
@@ -364,7 +355,7 @@ export default function EnvelopeGenerator() {
       case 4:
         return (
           <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-emerald-800">
+            <h2 className="text-2xl font-semibold text-primary/100">
               Your Digital Envelope is Ready!
             </h2>
 
@@ -436,7 +427,7 @@ export default function EnvelopeGenerator() {
                 <Button
                   onClick={shareToWhatsApp}
                   variant="outline"
-                  className="flex-1 sm:flex-none bg-green-50 hover:bg-green-100 text-green-600 border-green-200"
+                  className="flex-1 sm:flex-none bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-600 border-green-200"
                   disabled={sharing}
                 >
                   <Share2 className="mr-2 h-4 w-4" />
@@ -462,7 +453,7 @@ export default function EnvelopeGenerator() {
                   setCurrentStep(1);
                   setIsPaymentComplete(false);
                 }}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                className="bg-primary/95 hover:bg-primary/100 text-white"
               >
                 Create Another Envelope
               </Button>
@@ -479,13 +470,13 @@ export default function EnvelopeGenerator() {
     <div className="bg-white rounded-xl shadow-md p-6 md:p-8">
       {isGeneratingEnvelope ? (
         <div className="py-20 text-center">
-          <div className="inline-block p-4 mb-4 rounded-full bg-emerald-100">
-            <Gift className="h-12 w-12 text-emerald-600 animate-pulse" />
+          <div className="inline-block p-4 mb-4 rounded-full bg-primary/10">
+            <Gift className="h-12 w-12 text-primary/100 animate-pulse" />
           </div>
-          <h3 className="text-xl font-medium text-emerald-800 mb-2">
+          <h3 className="text-xl font-medium text-primary/80 mb-2">
             Generating Your Digital Envelope
           </h3>
-          <p className="text-emerald-600">Please wait a moment...</p>
+          <p className="text-primary/60">Please wait a moment...</p>
         </div>
       ) : (
         <>
@@ -495,7 +486,7 @@ export default function EnvelopeGenerator() {
                 <div
                   className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center text-white",
-                    currentStep >= 1 ? "bg-emerald-600" : "bg-gray-300"
+                    currentStep >= 1 ? "bg-primary/100" : "bg-gray-300"
                   )}
                 >
                   1
@@ -503,13 +494,13 @@ export default function EnvelopeGenerator() {
                 <div
                   className={cn(
                     "h-1 w-12",
-                    currentStep >= 2 ? "bg-emerald-600" : "bg-gray-300"
+                    currentStep >= 2 ? "bg-primary/100" : "bg-gray-300"
                   )}
                 />
                 <div
                   className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center text-white",
-                    currentStep >= 2 ? "bg-emerald-600" : "bg-gray-300"
+                    currentStep >= 2 ? "bg-primary/100" : "bg-gray-300"
                   )}
                 >
                   2
@@ -517,13 +508,13 @@ export default function EnvelopeGenerator() {
                 <div
                   className={cn(
                     "h-1 w-12",
-                    currentStep >= 3 ? "bg-emerald-600" : "bg-gray-300"
+                    currentStep >= 3 ? "bg-primary/100" : "bg-gray-300"
                   )}
                 />
                 <div
                   className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center text-white",
-                    currentStep >= 3 ? "bg-emerald-600" : "bg-gray-300"
+                    currentStep >= 3 ? "bg-primary/100" : "bg-gray-300"
                   )}
                 >
                   3
@@ -531,13 +522,13 @@ export default function EnvelopeGenerator() {
                 <div
                   className={cn(
                     "h-1 w-12",
-                    currentStep >= 4 ? "bg-emerald-600" : "bg-gray-300"
+                    currentStep >= 4 ? "bg-primary/100" : "bg-gray-300"
                   )}
                 />
                 <div
                   className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center text-white",
-                    currentStep >= 4 ? "bg-emerald-600" : "bg-gray-300"
+                    currentStep >= 4 ? "bg-primary/100" : "bg-gray-300"
                   )}
                 >
                   4
@@ -550,7 +541,7 @@ export default function EnvelopeGenerator() {
         </>
       )}
 
-      {/* <Toaster /> */}
+      <Toaster />
     </div>
   );
 }

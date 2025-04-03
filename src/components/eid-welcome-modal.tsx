@@ -49,26 +49,26 @@ export default function EidWelcomeModal({ onClose }: EidWelcomeModalProps) {
         )}
       >
         {/* Background with pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 to-emerald-900 pattern-bg opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/60 to-primary/90 pattern-bg opacity-90" />
 
         {/* Decorative elements */}
-        <div className="absolute top-4 right-4 text-yellow-300 animate-pulse">
+        <div className="absolute top-4 right-4 text-primary/80 animate-pulse">
           <Moon className="w-12 h-12" />
         </div>
         <div
-          className="absolute bottom-4 left-4 text-yellow-300 animate-pulse"
+          className="absolute bottom-4 left-4 text-primary/80 animate-pulse"
           style={{ animationDelay: "0.5s" }}
         >
           <Star className="w-10 h-10" />
         </div>
         <div
-          className="absolute top-1/4 left-1/4 text-yellow-300 animate-pulse"
+          className="absolute top-1/4 left-1/4 text-primary/80 animate-pulse"
           style={{ animationDelay: "1s" }}
         >
           <Star className="w-8 h-8" />
         </div>
         <div
-          className="absolute bottom-1/4 right-1/4 text-yellow-300 animate-pulse"
+          className="absolute bottom-1/4 right-1/4 text-primary/80 animate-pulse"
           style={{ animationDelay: "1.5s" }}
         >
           <Star className="w-6 h-6" />
@@ -77,8 +77,8 @@ export default function EidWelcomeModal({ onClose }: EidWelcomeModalProps) {
         {/* Content */}
         <div className="relative z-10 p-8 text-center">
           <div className="mb-6 flex justify-center">
-            <div className="w-20 h-20 rounded-full bg-yellow-400/20 flex items-center justify-center">
-              <Gift className="w-10 h-10 text-yellow-300" />
+            <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center">
+              <Gift className="w-10 h-10 text-primary/80" />
             </div>
           </div>
 
@@ -92,7 +92,7 @@ export default function EidWelcomeModal({ onClose }: EidWelcomeModalProps) {
           </div>
 
           <div className="flex justify-center">
-            <div className="w-24 h-1 bg-yellow-300/50 rounded-full" />
+            <div className="w-24 h-1 bg-primary/20 rounded-full" />
           </div>
 
           {/* Lantern decorations */}
@@ -100,14 +100,14 @@ export default function EidWelcomeModal({ onClose }: EidWelcomeModalProps) {
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="w-8 h-12 bg-yellow-500/80 rounded-t-full relative animate-bounce"
+                className="w-8 h-12 bg-primary/50 rounded-t-full relative animate-bounce"
                 style={{
                   animationDuration: `${1.5 + i * 0.2}s`,
                   animationDelay: `${i * 0.2}s`,
                 }}
               >
-                <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-1 bg-yellow-300 rounded-full" />
-                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-10 h-2 bg-yellow-600/80 rounded-full" />
+                <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-1 bg-primary/30 rounded-full" />
+                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-10 h-2 bg-primary/60 rounded-full" />
               </div>
             ))}
           </div>
@@ -116,7 +116,7 @@ export default function EidWelcomeModal({ onClose }: EidWelcomeModalProps) {
           {showCloseButton && (
             <Button
               onClick={handleClose}
-              className="mt-8 bg-white text-emerald-800 hover:bg-yellow-100"
+              className="mt-8 bg-white text-primary/80 hover:bg-primary/40 cursor-pointer hover:text-white"
             >
               Continue to Website
             </Button>
@@ -127,7 +127,7 @@ export default function EidWelcomeModal({ onClose }: EidWelcomeModalProps) {
         {showCloseButton && (
           <button
             onClick={handleClose}
-            className="absolute top-4 left-4 text-white/70 hover:text-white transition-colors"
+            className="absolute top-4 cursor-pointer left-4 text-white/70 hover:text-white transition-colors"
             aria-label="Close modal"
           >
             <X className="w-6 h-6" />

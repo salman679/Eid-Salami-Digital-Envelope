@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import { Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import EnvelopeGenerator from "@/components/envelope-generator";
-import EidWelcomeModal from "./eid-welcome-modal";
+// import EidWelcomeModal from "./eid-welcome-modal";
 
 export default function EidLandingPage() {
-  const [showModal, setShowModal] = useState(false);
+  const [, setShowModal] = useState(false);
   const [modalClosed, setModalClosed] = useState(false);
   const [showEnvelopeGenerator, setShowEnvelopeGenerator] = useState(false);
 
@@ -28,12 +28,12 @@ export default function EidLandingPage() {
     }
   }, []);
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setModalClosed(true);
-    // Save that user has seen the modal
-    localStorage.setItem("eid-modal-seen", "true");
-  };
+  // const handleCloseModal = () => {
+  //   setShowModal(false);
+  //   setModalClosed(true);
+  //   // Save that user has seen the modal
+  //   localStorage.setItem("eid-modal-seen", "true");
+  // };
 
   const handleStartSendingGift = () => {
     setShowEnvelopeGenerator(true);
@@ -47,9 +47,9 @@ export default function EidLandingPage() {
 
   return (
     <>
-      {showModal && <EidWelcomeModal onClose={handleCloseModal} />}
+      {/* {showModal && <EidWelcomeModal onClose={handleCloseModal} />} */}
 
-      <main className="min-h-screen bg-gradient-to-b from-emerald-50 to-emerald-100">
+      <main className="min-h-screen bg-gradient-to-b from-primary/10 to-secondary/10">
         {/* Hero section */}
         <div className="relative overflow-hidden">
           {/* Decorative background elements */}
@@ -57,11 +57,11 @@ export default function EidLandingPage() {
 
           <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold text-emerald-800 mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6">
                 Eid Salami Digital Envelope
               </h1>
 
-              <p className="text-xl text-emerald-700 mb-8">
+              <p className="text-xl text-primary mb-8">
                 Send digital Eid gifts to your loved ones with our beautiful
                 digital envelopes
               </p>
@@ -70,7 +70,7 @@ export default function EidLandingPage() {
                 <div className="animate-bounce">
                   <Button
                     onClick={handleStartSendingGift}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white text-lg px-8 py-6 rounded-full shadow-lg"
+                    className="bg-primary/95 hover:bg-primary/100 text-white text-lg px-8 py-6 rounded-full shadow-lg"
                     size="lg"
                   >
                     <Gift className="mr-2 h-5 w-5" />
@@ -85,16 +85,16 @@ export default function EidLandingPage() {
         {/* Features section */}
         <div className="bg-white py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-emerald-800 mb-12">
+            <h2 className="text-3xl font-bold text-center text-primary/90 mb-12">
               Why Send Digital Eid Salami?
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-emerald-50 p-6 rounded-lg text-center">
-                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-primary/10 p-6 rounded-lg text-center">
+                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8 text-emerald-600"
+                    className="h-8 w-8 text-primary/90"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -107,20 +107,20 @@ export default function EidLandingPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-emerald-800 mb-2">
+                <h3 className="text-xl font-semibold text-primary/90 mb-2">
                   Instant Delivery
                 </h3>
-                <p className="text-emerald-700">
+                <p className="text-primary/90">
                   Send your Eid gifts instantly, no matter where your loved ones
                   are located.
                 </p>
               </div>
 
-              <div className="bg-emerald-50 p-6 rounded-lg text-center">
-                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-primary/10 p-6 rounded-lg text-center">
+                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8 text-emerald-600"
+                    className="h-8 w-8 text-primary/90"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -133,20 +133,20 @@ export default function EidLandingPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-emerald-800 mb-2">
+                <h3 className="text-xl font-semibold text-primary/90 mb-2">
                   Personalized Messages
                 </h3>
-                <p className="text-emerald-700">
+                <p className="text-primary/90">
                   Add your personal touch with custom messages and beautiful
                   designs.
                 </p>
               </div>
 
-              <div className="bg-emerald-50 p-6 rounded-lg text-center">
-                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-primary/10 p-6 rounded-lg text-center">
+                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8 text-emerald-600"
+                    className="h-8 w-8 text-primary/90"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -159,10 +159,10 @@ export default function EidLandingPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-emerald-800 mb-2">
+                <h3 className="text-xl font-semibold text-primary/90 mb-2">
                   Easy Sharing
                 </h3>
-                <p className="text-emerald-700">
+                <p className="text-primary/90">
                   Share your Eid gifts via WhatsApp, email, or social media with
                   just a click.
                 </p>
@@ -173,7 +173,7 @@ export default function EidLandingPage() {
               <div className="text-center mt-12">
                 <Button
                   onClick={handleStartSendingGift}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                  className="bg-primary/90 hover:bg-primary/90 text-white"
                 >
                   <Gift className="mr-2 h-4 w-4" />
                   Send an Eid Gift Now
@@ -187,7 +187,7 @@ export default function EidLandingPage() {
         {showEnvelopeGenerator && (
           <div id="envelope-generator" className="py-16 px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-emerald-800 mb-8">
+              <h2 className="text-3xl font-bold text-center text-primary/90 mb-8">
                 Create Your Eid Salami Envelope
               </h2>
               <EnvelopeGenerator />
@@ -196,7 +196,7 @@ export default function EidLandingPage() {
         )}
 
         {/* Footer */}
-        <footer className="bg-emerald-800 text-white py-8">
+        <footer className="bg-primary/90 text-white py-8">
           <div className="container mx-auto px-4 text-center">
             <p>
               © {new Date().getFullYear()} Eid Salami Digital Envelope. All
